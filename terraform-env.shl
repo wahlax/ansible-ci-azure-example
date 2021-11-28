@@ -1,0 +1,8 @@
+#!/bin/bash
+
+export ARM_CLIENT_ID="${LOCAL_AZURE_CLIENT_ID}"
+export ARM_CLIENT_SECRET="${LOCAL_AZURE_CLIENT_SECRET}"
+export ARM_SUBSCRIPTION_ID="${LOCAL_AZURE_SUBSCRIPTION_ID}"
+export ARM_TENANT_ID="${LOCAL_AZURE_TENANT_ID}"
+export TF_VAR_azure_region="eastus"
+export TF_VAR_ssh_pub_key=`cat ~/.ssh/id_rsa.pub`

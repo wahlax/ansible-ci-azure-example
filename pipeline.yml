@@ -1,0 +1,17 @@
+- hosts: localhost
+
+  tasks:
+
+    - name: Run terraform with AWS env from vault
+      ansible.builtin.shell: |
+        cd {{ ci_work_dir }}
+        ansible-galaxy install -r requirements.yml
+        . ./terraform-env.shl
+        terraform init -input=false
+        terraform plan -out=tfplan -input=false
+        terraform apply -input=false tfplan
+      environment:
+        LOCAL_AZURE_CLIENT_ID: "{{ azure_client_id }}"
+        LOCAL_AZURE_CLIENT_SECRET: "{{ azure_client_secret }}"
+        LOCAL_AZURE_SUBSCRIPTION_ID: "{{ azure_subscription_id }}"
+        LOCAL_AZURE_TENANT_ID: "{{ azure_tenant_id }}"
